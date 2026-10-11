@@ -948,6 +948,7 @@ satellite-anomaly-survival-prediction/
 ├── requirements.txt                       # Project Python dependencies
 ├── .gitignore                             # Git ignore specification
 ├── run_pipeline.py                        # Master pipeline: trains all 5 models, runs 10-fold CV, exports outputs
+├── app.py                                 # Interactive Streamlit Web Application & Mission Telemetry GUI
 │
 ├── data.csv                               # Cleaned event-level dataset (890 events across 11 satellites)
 ├── satfeat.csv                            # Satellite orbital features (Perigee, Inclination)
@@ -1004,6 +1005,7 @@ satellite-anomaly-survival-prediction/
 | `satfeat.csv` | Satellite-level orbital features (Perigee, Inclination) |
 | `src/` | Modular data preparation, baselines, and advanced model implementations |
 | `run_pipeline.py` | Master orchestrator running 10-fold CV, model serialization, and plot export |
+| `app.py` | Interactive Streamlit Web Application and mission telemetry dashboard |
 | `models/` | Serialized scikit-learn models and feature scaler (`.joblib`) |
 | `results/` | CSV summaries and high-resolution comparison plots |
 | `notebooks/` | Interactive Jupyter presentation notebook |
@@ -1169,6 +1171,16 @@ To launch the complete visual presentation notebook:
 jupyter notebook notebooks\satellite_anomaly_prediction.ipynb
 ```
 
+### 32.5 Interactive Streamlit Web Application (GUI)
+
+To launch the mission telemetry intelligence dashboard and multi-model predictor:
+
+```bash
+streamlit run app.py
+```
+
+The web application opens at `http://localhost:8501` and provides interactive satellite presets, telemetry sliders, real-time prediction cards across all 5 models, concordance charts, Kaplan-Meier survival curves, and dataset explorers.
+
 ---
 
 ## 33. Complete Reproduction
@@ -1193,6 +1205,9 @@ python src\prepare_data.py
 
 # Run complete pipeline (trains all 5 models, runs 10-fold CV, exports models & figures)
 python run_pipeline.py
+
+# Launch interactive web GUI
+streamlit run app.py
 ```
 
 > Remember to place the raw datasets in `raw/` (see [Raw Dataset Setup](#29-raw-dataset-setup)) before running `prepare_data.py`.
@@ -1416,6 +1431,7 @@ where *S(t)* is the probability that an anomaly has not yet occurred by time *t*
 - [x] Model Serialization (`models/*.joblib`)
 - [x] Interactive Presentation Notebook (`notebooks/satellite_anomaly_prediction.ipynb`)
 - [x] Master End-to-End Pipeline (`run_pipeline.py`)
+- [x] Interactive Streamlit Web GUI & Mission Dashboard (`app.py`)
 
 ---
 
